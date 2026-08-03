@@ -2,6 +2,8 @@
 
 一个轻量的网页手串试戴工具。上传腕部照片后，可以切换材质、拖动手串，并调整尺寸、角度和透明度，最后下载合成图。
 
+在线体验：[GitHub Pages](https://nanamiqa.github.io/shouchuan/) · [Sites 版本](https://wanjian-bracelet-diy.nanananannananinanani.chatgpt.site/)
+
 ## 当前功能
 
 - 照片只在浏览器本地处理，不上传服务器
@@ -21,6 +23,17 @@
 npm install
 npm run dev
 ```
+
+## GitHub Pages
+
+推送到 `main` 后，GitHub Actions 会自动构建静态版本并发布到 GitHub Pages。
+
+```bash
+npm run build
+npm run pages:build
+```
+
+静态文件会生成在 `out-pages/`。
 
 ## 开源参考
 
