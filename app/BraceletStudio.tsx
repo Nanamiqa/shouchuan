@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { AIStudio } from "./AIStudio";
 
 type BraceletPreset = {
   id: string;
@@ -368,7 +369,10 @@ export function BraceletStudio() {
           <span>腕间</span>
           <small>WRIST VIEW</small>
         </a>
-        <p className="privacy-pill"><span aria-hidden="true">●</span> 照片仅在本机处理</p>
+        <div className="topbar-actions">
+          <a className="ai-nav-link" href="#ai-studio"><span aria-hidden="true">✦</span> AI 实物创作</a>
+          <p className="privacy-pill"><span aria-hidden="true">●</span> 试戴照仅本机处理</p>
+        </div>
       </header>
 
       <section className="hero" id="top">
@@ -634,9 +638,11 @@ export function BraceletStudio() {
         </div>
       </section>
 
+      <AIStudio />
+
       <footer>
-        <p><span className="footer-mark" aria-hidden="true">•••</span> 腕间 <small>BETA</small></p>
-        <p>你的照片不会离开这台设备。</p>
+        <p><span className="footer-mark" aria-hidden="true">•••</span> 腕间 <small>AI STUDIO</small></p>
+        <p>试戴照仅在本机处理；AI 素材只发送到你配置的模型接口。</p>
       </footer>
 
       {status && <div className="toast" role="status">{status}</div>}

@@ -11,20 +11,20 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: baseUrl,
     title: {
-      default: "腕间 · 手串试戴",
+      default: "腕间 · AI 配饰设计与手串试戴",
       template: "%s · 腕间",
     },
-    description: "不用想象，戴上再决定。照片仅在你的设备上处理。",
+    description: "上传实物珠子与配件，生成手串、手机链、项链设计；也可以上传腕部照片试戴和自由串珠。",
     openGraph: {
-      title: "腕间 · 手串试戴",
-      description: "上传腕部照片，看看不同手串戴在自己手上的效果。",
+      title: "腕间 · AI 实物创作",
+      description: "上传实物素材，生成手串、手机链与项链设计。",
       type: "website",
-      images: [{ url: "/og.png", width: 1733, height: 909, alt: "腕间手串试戴工具" }],
+      images: [{ url: "/og.png", width: 1731, height: 908, alt: "腕间 AI 实物创作工具" }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "腕间 · 手串试戴",
-      description: "不用想象，戴上再决定。",
+      title: "腕间 · AI 实物创作",
+      description: "上传实物素材，生成手串、手机链与项链设计。",
       images: ["/og.png"],
     },
   };

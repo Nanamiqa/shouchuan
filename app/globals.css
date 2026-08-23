@@ -28,7 +28,9 @@ body {
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -40,6 +42,12 @@ a {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
+  outline: 3px solid rgba(49, 95, 77, 0.35);
+  outline-offset: 3px;
+}
+
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid rgba(49, 95, 77, 0.35);
   outline-offset: 3px;
 }
@@ -112,6 +120,27 @@ input:focus-visible {
 .privacy-pill span {
   margin-right: 5px;
   font-size: 8px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-nav-link {
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.ai-nav-link span {
+  margin-right: 5px;
 }
 
 .hero {
@@ -982,6 +1011,687 @@ footer small {
   animation: toast-in 180ms ease-out;
 }
 
+.ai-studio {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto 64px;
+  padding: 54px 54px 48px;
+  border: 1px solid rgba(32, 35, 30, 0.14);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(173, 202, 181, 0.26), transparent 25rem),
+    #202a24;
+  color: #f7f5ee;
+  box-shadow: 0 34px 100px rgba(28, 35, 30, 0.16);
+}
+
+.ai-studio-intro {
+  max-width: 680px;
+  margin-bottom: 42px;
+}
+
+.ai-studio-intro .eyebrow {
+  color: #a9cbb5;
+}
+
+.ai-studio-intro h2 {
+  margin: 0;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+}
+
+.ai-studio-intro h2 em {
+  color: #b9d6c2;
+  font-style: normal;
+}
+
+.ai-studio-intro > p:not(.eyebrow) {
+  max-width: 610px;
+  margin: 24px 0;
+  color: rgba(247, 245, 238, 0.66);
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.ai-privacy-note {
+  max-width: 540px;
+  padding: 14px 16px;
+  border: 1px solid rgba(185, 214, 194, 0.18);
+  border-radius: 12px;
+  background: rgba(185, 214, 194, 0.07);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.ai-privacy-note > span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #b9d6c2;
+  color: #1e2922;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+.ai-privacy-note strong,
+.ai-privacy-note small {
+  display: block;
+}
+
+.ai-privacy-note strong {
+  font-size: 11px;
+}
+
+.ai-privacy-note small {
+  margin-top: 4px;
+  color: rgba(247, 245, 238, 0.5);
+  font-size: 9px;
+}
+
+.ai-workbench {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 20px;
+}
+
+.ai-column {
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.ai-step-heading {
+  margin: 4px 0 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ai-step-heading:not(:first-child) {
+  margin-top: 30px;
+}
+
+.ai-step-heading > span {
+  padding-top: 2px;
+  color: #98b9a3;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+}
+
+.ai-step-heading strong,
+.ai-step-heading small {
+  display: block;
+}
+
+.ai-step-heading strong {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 15px;
+}
+
+.ai-step-heading small {
+  margin-top: 3px;
+  color: rgba(247, 245, 238, 0.42);
+  font-size: 8px;
+}
+
+.material-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+.material-preview,
+.material-upload-button {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1;
+  margin: 0;
+  overflow: hidden;
+  border: 1px dashed rgba(185, 214, 194, 0.25);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.material-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.material-preview figcaption {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  background: rgba(19, 26, 22, 0.72);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 7px;
+  backdrop-filter: blur(5px);
+}
+
+.material-preview button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(19, 26, 22, 0.72);
+  color: white;
+  cursor: pointer;
+}
+
+.material-upload-button {
+  color: #b9d6c2;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.material-upload-button span,
+.material-upload-button strong,
+.material-upload-button small {
+  display: block;
+}
+
+.material-upload-button span {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.material-upload-button strong {
+  margin-top: 5px;
+  font-size: 9px;
+}
+
+.material-upload-button small {
+  margin-top: 4px;
+  color: rgba(247, 245, 238, 0.35);
+  font-size: 6px;
+}
+
+.product-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.product-type-grid button {
+  min-width: 0;
+  min-height: 72px;
+  padding: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  display: grid;
+  grid-template-columns: 27px 1fr 14px;
+  gap: 7px;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+
+.product-type-grid button.is-active {
+  border-color: #9fc5ac;
+  background: rgba(185, 214, 194, 0.11);
+}
+
+.product-type-grid button > i {
+  color: #b9d6c2;
+  font-size: 22px;
+  font-style: normal;
+  text-align: center;
+}
+
+.product-type-grid strong,
+.product-type-grid small {
+  display: block;
+}
+
+.product-type-grid strong {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 11px;
+}
+
+.product-type-grid small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: rgba(247, 245, 238, 0.38);
+  font-size: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.product-type-grid b {
+  color: #b9d6c2;
+  font-size: 9px;
+  opacity: 0;
+}
+
+.product-type-grid .is-active b {
+  opacity: 1;
+}
+
+.ai-field {
+  margin-top: 20px;
+  display: block;
+}
+
+.ai-field > span {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ai-field > span strong {
+  font-size: 10px;
+}
+
+.ai-field > span small {
+  color: rgba(247, 245, 238, 0.32);
+  font-size: 8px;
+}
+
+.ai-field textarea,
+.ai-field select {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7f5ee;
+}
+
+.ai-field textarea {
+  padding: 12px 13px;
+  resize: vertical;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.ai-field select {
+  height: 40px;
+  padding: 0 12px;
+  font-size: 10px;
+}
+
+.api-settings-toggle {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 20px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(247, 245, 238, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 9px;
+}
+
+.api-settings-toggle small {
+  color: rgba(247, 245, 238, 0.36);
+  font-size: 8px;
+}
+
+.api-settings-toggle b {
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: #936d5d;
+  display: inline-block;
+}
+
+.api-settings-toggle b.is-ready {
+  background: #76aa83;
+  box-shadow: 0 0 0 4px rgba(118, 170, 131, 0.12);
+}
+
+.api-settings-panel {
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 0;
+  border-radius: 0 0 9px 9px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.api-key-field > span {
+  margin-bottom: 7px;
+  color: rgba(247, 245, 238, 0.55);
+  display: block;
+  font-size: 8px;
+}
+
+.api-key-field > span a {
+  margin-left: 6px;
+  color: #b9d6c2;
+  text-decoration: none;
+}
+
+.api-key-field > div {
+  display: flex;
+  gap: 6px;
+}
+
+.api-key-field input {
+  min-width: 0;
+  height: 38px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.055);
+  color: white;
+  flex: 1;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+}
+
+.api-key-field button {
+  padding: 0 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  background: transparent;
+  color: rgba(247, 245, 238, 0.65);
+  cursor: pointer;
+  font-size: 8px;
+}
+
+.remember-key {
+  margin-top: 10px;
+  color: rgba(247, 245, 238, 0.52);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 8px;
+}
+
+.remember-key input {
+  width: 14px;
+  height: 14px;
+  accent-color: #9fc5ac;
+}
+
+.api-advanced-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.api-advanced-grid label > span {
+  margin-bottom: 6px;
+  color: rgba(247, 245, 238, 0.42);
+  display: block;
+  font-size: 7px;
+}
+
+.api-advanced-grid input,
+.api-advanced-grid select {
+  width: 100%;
+  height: 36px;
+  padding: 0 9px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f7f5ee;
+  font-size: 8px;
+}
+
+.api-advanced-grid input {
+  font-family: ui-monospace, monospace;
+}
+
+.api-settings-panel > p {
+  margin: 9px 0 0;
+  color: rgba(247, 245, 238, 0.36);
+  font-size: 7px;
+}
+
+.ai-result-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-result-toolbar {
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ai-result-toolbar > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.ai-result-toolbar strong {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 12px;
+}
+
+.ai-result-toolbar small {
+  color: rgba(247, 245, 238, 0.34);
+  font-family: ui-monospace, monospace;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.ai-result-stage {
+  min-height: 420px;
+  margin: 13px 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 13px;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(185, 214, 194, 0.12), transparent 15rem),
+    rgba(9, 13, 11, 0.24);
+  display: grid;
+  place-items: center;
+}
+
+.ai-result-stage.has-result {
+  display: block;
+}
+
+.ai-generated-result {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+}
+
+.ai-generated-result img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+  object-fit: contain;
+  background: rgba(6, 9, 7, 0.32);
+}
+
+.ai-generated-result > div {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 7px;
+}
+
+.ai-generated-result button {
+  min-height: 35px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(20, 28, 23, 0.78);
+  color: white;
+  cursor: pointer;
+  font-size: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.ai-generated-result button:first-child {
+  border-color: #b9d6c2;
+  background: #b9d6c2;
+  color: #1b271f;
+}
+
+.ai-result-empty {
+  max-width: 260px;
+  padding: 32px;
+  text-align: center;
+}
+
+.ai-result-empty > strong {
+  margin-top: 18px;
+  display: block;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 16px;
+}
+
+.ai-result-empty p {
+  margin: 9px 0 0;
+  color: rgba(247, 245, 238, 0.38);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.ai-loading-state > button {
+  margin-top: 18px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  background: transparent;
+  color: rgba(247, 245, 238, 0.6);
+  cursor: pointer;
+  font-size: 8px;
+}
+
+.ai-spinner {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  display: block;
+  animation: ai-spin 4s linear infinite;
+}
+
+.ai-spinner::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(185, 214, 194, 0.24);
+  border-radius: 50%;
+}
+
+.ai-spinner i {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%, #eef5ef, #86ae91 58%, #355b43);
+}
+
+.ai-spinner i:nth-child(1) { top: 0; left: 28px; }
+.ai-spinner i:nth-child(2) { right: 4px; bottom: 12px; }
+.ai-spinner i:nth-child(3) { bottom: 12px; left: 4px; }
+
+@keyframes ai-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ai-orbit {
+  position: relative;
+  width: 82px;
+  height: 48px;
+  margin: 0 auto;
+  border: 1px solid rgba(185, 214, 194, 0.26);
+  border-radius: 50%;
+  display: block;
+  transform: rotate(-10deg);
+}
+
+.ai-orbit i {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%, #e9f1e8, #75a285 58%, #2f5841);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.28);
+}
+
+.ai-orbit i:nth-child(1) { left: -6px; top: 14px; }
+.ai-orbit i:nth-child(2) { left: 30px; top: -8px; }
+.ai-orbit i:nth-child(3) { right: -6px; bottom: 6px; }
+
+.ai-generate-button {
+  width: 100%;
+  min-height: 56px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 10px;
+  background: #b9d6c2;
+  color: #1b271f;
+  display: grid;
+  grid-template-columns: 28px 1fr 16px;
+  gap: 9px;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ai-generate-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.32;
+}
+
+.ai-generate-button > span:first-child {
+  font-size: 19px;
+}
+
+.ai-generate-button strong,
+.ai-generate-button small {
+  display: block;
+}
+
+.ai-generate-button strong {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 13px;
+}
+
+.ai-generate-button small {
+  margin-top: 3px;
+  color: rgba(27, 39, 31, 0.6);
+  font-size: 8px;
+}
+
+.ai-generate-button > b {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ai-result-footnote {
+  margin: 0;
+  color: rgba(247, 245, 238, 0.3);
+  font-size: 7px;
+  text-align: center;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1030,9 +1740,17 @@ footer small {
   .diy-layout {
     grid-template-columns: 1fr;
   }
+
+  .ai-workbench {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 620px) {
+  .privacy-pill {
+    display: none;
+  }
+
   .topbar,
   .hero,
   .control-panel,
@@ -1051,6 +1769,15 @@ footer small {
   .privacy-pill {
     padding: 8px 10px;
     font-size: 9px;
+  }
+
+  .ai-nav-link {
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+
+  .topbar-actions {
+    gap: 6px;
   }
 
   .hero {
@@ -1091,6 +1818,36 @@ footer small {
 
   .control-panel {
     padding: 24px 17px;
+  }
+
+  .ai-studio {
+    width: calc(100% - 28px);
+    padding: 35px 17px 28px;
+  }
+
+  .ai-column {
+    padding: 17px;
+  }
+
+  .material-upload-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-type-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-result-stage {
+    min-height: 360px;
+  }
+
+  .ai-generated-result,
+  .ai-generated-result img {
+    min-height: 360px;
+  }
+
+  .api-advanced-grid {
+    grid-template-columns: 1fr;
   }
 
   .preset-list {
