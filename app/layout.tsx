@@ -4,9 +4,24 @@ import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const baseUrl = new URL(`${protocol}://${host}`);
+  const configuredUrl = process.env.PUBLIC_SITE_URL?.trim();
+  const forwardedHost = requestHeaders.get("x-forwarded-host")?.split(",")[0]?.trim();
+  const directHost = requestHeaders.get("host")?.trim() ?? "localhost:3000";
+  const hostedDomain = [forwardedHost, directHost].find((host) =>
+    host === "nanamiqa.github.io" || host?.endsWith(".chatgpt.site"),
+  );
+  const localHost = /^(localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/.test(directHost);
+
+  let baseUrl = new URL(localHost ? `http://${directHost}` : "https://nanamiqa.github.io/shouchuan/");
+  if (hostedDomain) baseUrl = new URL(`https://${hostedDomain}`);
+  if (configuredUrl) {
+    try {
+      const candidate = new URL(configuredUrl);
+      if (candidate.protocol === "http:" || candidate.protocol === "https:") baseUrl = candidate;
+    } catch {
+      // Keep the safe inferred origin when the optional value is malformed.
+    }
+  }
 
   return {
     metadataBase: baseUrl,

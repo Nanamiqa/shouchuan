@@ -1,0 +1,11 @@
+services:
+  wanjian:
+    build:
+      context: .
+      target: runtime
+    image: wanjian:local
+    ports:
+      - "${WANJIAN_PORT:-3000}:3000"
+    environment:
+      PUBLIC_SITE_URL: "${PUBLIC_SITE_URL:-}"
+    restart: unless-stopped

@@ -29,6 +29,35 @@ npm install
 npm run dev
 ```
 
+## Docker 本地部署
+
+需要安装 Docker Desktop 或 Docker Engine，并启用 Compose。
+
+```bash
+docker compose up -d --build
+```
+
+打开 <http://localhost:3000> 即可使用。查看运行日志或停止服务：
+
+```bash
+docker compose logs -f
+docker compose down
+```
+
+如果本机的 `3000` 端口已被占用，可以改用其他端口：
+
+```bash
+WANJIAN_PORT=8080 docker compose up -d --build
+```
+
+然后访问 <http://localhost:8080>。Docker 部署不需要在服务器配置 OpenAI API Key；每位使用者仍在自己的浏览器中填写 Key，默认只保存在当前会话。
+
+如果通过域名和反向代理提供访问，可以同时配置网站公开地址，让分享图片链接使用正确域名：
+
+```bash
+PUBLIC_SITE_URL=https://bracelet.example.com docker compose up -d --build
+```
+
 ## GitHub Pages
 
 推送到 `main` 后，GitHub Actions 会自动构建静态版本并发布到 GitHub Pages。

@@ -1,0 +1,17 @@
+.git
+.github
+.next
+.vinext
+.wrangler
+dist
+node_modules
+out
+out-pages
+outputs
+work
+coverage
+.DS_Store
+*.log
+.env
+.env.*
+npm-debug.log*
